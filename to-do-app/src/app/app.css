@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-container {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 50px);
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.main-content {
+    width: 100%;
+}
+
+.main-content.sidebar-open {
+  margin-left: 20%;
+}
+
+app-sidebar {
+  flex-shrink: 0;
+  width: 20%;
+  background-color: lightgoldenrodyellow;
+  transition: transform 0.3s ease;
+  position: absolute;
+}
+
+app-header {
+  height: 50px;
+  background-color: antiquewhite;
+  flex-shrink: 0;
+}
