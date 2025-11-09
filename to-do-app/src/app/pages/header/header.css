@@ -3,4 +3,11 @@
     background-color: antiquewhite;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    font-weight: bold;
+    font-size: larger;
+    color: chocolate;
 }

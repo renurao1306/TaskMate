@@ -5,7 +5,7 @@
 
 <div class="main-container">
   <app-sidebar [showSidebar]="showSidebarFlag"></app-sidebar>
-  <div class="main-content" [class.sidebar-open]="showSidebarFlag">
+  <div class="main-content" [ngClass]="{'sidebar-open': showSidebarFlag}">
     <router-outlet></router-outlet>
   </div>
 </div>
