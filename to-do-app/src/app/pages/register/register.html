@@ -1,0 +1,29 @@
+<div class="register-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div>
+            Name: <input type="text" formControlName="name" />
+        </div>
+        <div>
+            Username: <input type="text" formControlName="username" />
+        </div>
+        <div>
+            Password: <input type="password" formControlName="password" />
+        </div>
+        <div>
+            Contact: <input type="tel" formControlName="contact" />
+        </div>
+        <div>
+            Email: <input type="email" formControlName="email" />
+        </div>
+        <div>
+            DOB: <input type="date" formControlName="dob" />
+        </div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+
+        <div>
+            <a routerLink="/login">Already have an account? Login Now!</a>
+        </div>
+    </form>
+</div>
