@@ -12,6 +12,6 @@ export const routes: Routes = [
     {path: 'login', component: Login},
 
     {path: 'home', component: Home, canActivate: [authGuard]},
-    {path: 'about', component: About, canActivate: [authGuard]},
+    {path: 'about',  loadComponent: () => import('./pages/about/about').then((m) => m.About), canActivate: [authGuard]},
     {path: 'contact', component: Contact, canActivate: [authGuard]}
 ];
