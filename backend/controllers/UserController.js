@@ -16,7 +16,7 @@ const registerUser = async (req, res) => {
         }
 
         const newUser = await User.create({ name, username, password, contact, email, dob });
-        res.status(201).json({
+        return res.status(201).json({
             _id: newUser._id,
             name: newUser.name,
             username: newUser.username,
@@ -27,7 +27,7 @@ const registerUser = async (req, res) => {
         })
     } catch (error) {
         console.log(`Error while registering new user: ${error.message}`);
-        res.status(500).json({ error: error.message });
+        return res.status(500).json({ error: error.message });
     }
 }
 
@@ -35,17 +35,17 @@ const registerUser = async (req, res) => {
 // Login
 const loginUser = async (req, res) => {
     try {
-        const {username, password} = req.body;
+        const { username, password } = req.body;
 
-        const existingUser = await User.findOne({username});
+        const existingUser = await User.findOne({ username });
 
-        if(!existingUser){
-            return res.status(404).send({message: 'User not found'});
+        if (!existingUser) {
+            return res.status(404).send({ message: 'User not found' });
         }
 
         const passwordValidated = await existingUser.matchPassword(password);
 
-        if(passwordValidated){
+        if (passwordValidated) {
             return res.status(200).json({
                 _id: existingUser._id,
                 name: existingUser.name,
@@ -53,15 +53,32 @@ const loginUser = async (req, res) => {
                 token: generateToken(existingUser._id)
             })
         } else {
-            return res.status(401).json({message: 'Invalid creadentials'})
+            return res.status(401).json({ message: 'Invalid creadentials' })
         }
 
-        
+
     } catch (error) {
         console.log(`Error while loggin in : ${error.message}`);
-        res.status(500).json({error: error.message});
+        return res.status(500).json({ error: error.message });
     }
 }
 
 
-export default {registerUser, loginUser}
+// get User Profile
+const getUserProfile = async (req, res) => { 
+    try {
+        console.log('req.loggedInUser:::', req.loggedInUser);
+        
+        if(!req.loggedInUser){
+            return res.status(404).json({message: 'No user found'});
+        }
+
+        return res.status(200).json(req.loggedInUser);
+    } catch (error) {
+        console.log(`Error while fetching user profile: ${error.message}`)
+        return res.status(500).json({error: error.message});
+    }
+}
+
+
+export default { registerUser, loginUser, getUserProfile }
