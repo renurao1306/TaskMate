@@ -1,10 +1,12 @@
 <!-- <p>Hello</p> -->
 <!-- <button (click)="hello()">Click Me</button> -->
 
+@if(!isAuthPage()){
 <app-header (showSidebar)="toggleSidebar($event)"></app-header>
+}
 
 <div class="main-container">
-  <app-sidebar [showSidebar]="showSidebarFlag"></app-sidebar>
+  <app-sidebar *ngIf="!isAuthPage()" [showSidebar]="showSidebarFlag"></app-sidebar>
   <div class="main-content" [ngClass]="{'sidebar-open': showSidebarFlag}">
     <router-outlet></router-outlet>
   </div>

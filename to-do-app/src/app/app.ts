@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Header } from './pages/header/header';
 import { Sidebar } from './pages/sidebar/sidebar';
@@ -14,11 +14,20 @@ import { CommonModule } from '@angular/common';
 export class App {
   showSidebarFlag: boolean = false;
 
+  constructor(private router: Router) {}
+
   toggleSidebar(show: boolean) {
     this.showSidebarFlag = show;
   }
 
-
+  isAuthPage(){
+    const url = this.router.url;
+    if(url.includes('/login') || url.includes('/register')){
+      this.showSidebarFlag = false;
+      return true;
+    }
+    return false;
+  }
 
 
 
