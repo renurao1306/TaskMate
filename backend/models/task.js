@@ -5,10 +5,15 @@ const TaskSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    completed: {
-        type: Boolean,
+    status: {
+        type: String,
         required: false,
-        default: false
+        default: 'To-Do'
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 }, { timestamps: true })
 

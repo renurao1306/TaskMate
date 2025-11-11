@@ -2,5 +2,40 @@
 
 <div class="home-container">
     <h2>Home Page</h2>
-    <button>Hello!!!</button>
+    <div class="btn-container">
+        <button>Hello!!!</button>
+        <button (click)="toggleAddEditTask()">Add Task</button>
+    </div>
+    @if(showAddEditTask){
+    <app-add-edit-task (closeAddEditTask)="toggleAddEditTaskAndRefresh()"></app-add-edit-task>
+    }
+
+    @if(tasks?.length > 0){
+    <div class="task-table">
+        <table>
+            <tr>
+                <th>Sr.No</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+
+            @for(task of tasks; track task._id; let i = $index){
+            <tr>
+                <td>{{ i + 1 }}</td>
+                <td class="title-td">{{task.title}}</td>
+                <td>{{task.status}}</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+    } @else {
+   <div> No tasks found.</div>
+    }
+
+
 </div>

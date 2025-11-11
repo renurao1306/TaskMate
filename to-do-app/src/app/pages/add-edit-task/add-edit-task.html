@@ -1,0 +1,23 @@
+<div class="add-edit-task-container">
+    <form [formGroup]="taskForm" (ngSubmit)="onTaskSubmit()">
+        <h3>Add a Task</h3>
+
+        <div>
+            Title
+            <input type="text" required formControlName="title"/>
+        </div>
+
+        <div>
+            Status
+
+            <input type="radio" name="status" value="To-Do" formControlName="status"/>To-Do
+            <input type="radio" name="status" value="In Progress" formControlName="status"/>In Progress
+            <input type="radio" name="status" value="Completed" formControlName="status"/>Completed
+        </div>
+
+
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
